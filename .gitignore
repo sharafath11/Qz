@@ -1,31 +1,64 @@
-# Ignore node_modules
+# Node.js dependencies
 node_modules/
 
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Environment variables
-.env
-
-# Dependency directories
-jspm_packages/
-
-# Optional npm cache directory
-.npm
-
-# Optional REPL history
-.node_repl_history
-
-# Miscellaneous
-.DS_Store
-Thumbs.db
-
-# Debug
-.vscode/
-.idea/
-
-# Ignore build outputs
+# Build and Cache
 dist/
 build/
+.cache/
+
+# Environment Files
+.env
+.env.local
+.env.*.local
+
+# Database Files
+*.db
+*.sqlite
+*.sqlite3
+
+# OS and IDE Specific
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Debug Tools
+/.eslintcache
+/.prettiercache
+
+# Test Coverage
+coverage/
+.nyc_output/
+
+# React Specific
+frontend/node_modules/
+frontend/build/
+frontend/.cache/
+
+# Next.js (if using Next.js for the frontend)
+.next/
+
+# Temporary Files
+*.tmp
+*.temp
+
+# MongoDB Data Files (if applicable)
+dump/
+data/
+*.lock
+
+# Uploaded Files
+/uploads/
+
+# Miscellaneous
+*.pid
+*.seed
+*.pid.lock
