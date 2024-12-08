@@ -1,9 +1,9 @@
-
-
 import { useState } from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Brain, Menu, User, X } from 'lucide-react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { clearUser } from '../redux/userSlice'
+
 const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Categories', href: '/categories' },
@@ -11,20 +11,23 @@ const navItems = [
   { name: 'Multiplayer', href: '/multiplayer' },
 ]
 
-
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-  const user=useSelector((state)=>state.user.user)
-  console.log(user)
- 
+  
+  const dispatch = useDispatch()
+  const user = useSelector((state) => state.user.user)
+
+  const handleLogout = () => {
+    dispatch(clearUser())
+  }
 
   return (
     <header className="bg-white shadow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-6">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               <Brain className="h-8 w-8 text-indigo-600" />
               <span className="ml-2 text-2xl font-bold text-gray-900">Qz Master</span>
             </Link>
@@ -33,7 +36,7 @@ export default function Header() {
             {navItems.map((item) => (
               <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-gray-500 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium"
               >
                 {item.name}
@@ -41,35 +44,51 @@ export default function Header() {
             ))}
           </nav>
           <div className="flex items-center">
-            {/* Dropdown for user options */}
-            <div className="relative">
-              <button
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="relative h-8 w-8 rounded-full flex items-center justify-center"
-              >
-                <img
-                  className="h-8 w-8 rounded-full"
-                  src="/avatars/01.png" // Replace with the actual avatar image URL
-                  alt="User Avatar"
-                />
-              </button>
-              {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white shadow-lg rounded-md">
-                  <div className="px-4 py-2">
-                    <p className="text-sm font-medium text-gray-900">{user.name}</p>
-                    
-                  </div>
-                  <div className="border-t">
-                    <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</button>
-                    <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</button>
+            {/* Conditional rendering based on user authentication */}
+            {user ? (
+              // Dropdown for logged-in user
+              <div className="relative">
+                <button
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="relative h-8 w-8 rounded-full flex items-center justify-center"
+                >
+                  <img
+                    src="https://www.w3schools.com/w3images/avatar2.png"
+                    alt="Avatar"
+                    className="avatar-img"
+                  />
+                </button>
+                {isDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-56 bg-white shadow-lg rounded-md">
+                    <div className="px-4 py-2">
+                      <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                    </div>
                     <div className="border-t">
-                      <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Log out</button>
+                      <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        Profile
+                      </button>
+                      <button className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        Settings
+                      </button>
+                      <div className="border-t">
+                        {/* Ensure logout works only when clicked */}
+                        <button
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          onClick={handleLogout}
+                        >
+                          Log out
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </div>
-
+                )}
+              </div>
+            ) : (
+              // Show login button if user is not logged in
+              <button className="text-gray-500 hover:text-gray-900 px-4 py-2 rounded-md text-sm font-medium">
+                <Link to="/login">Login</Link>
+              </button>
+            )}
             {/* Mobile menu toggle */}
             <div className="ml-4 md:hidden">
               <button
@@ -93,7 +112,7 @@ export default function Header() {
             {navItems.map((item) => (
               <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-gray-500 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >

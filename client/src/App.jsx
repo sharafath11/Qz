@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/ Home";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import CategoriesPage from "./pages/CategoriesPage";
+import Leaderboard from "./pages/Leaderboard";
 
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage/>} />
+        <Route path="/categories" element={<CategoriesPage/>}/>
+        <Route path="/leaderboard" element={<Leaderboard/>}/>
       </Routes>
     </BrowserRouter>
   );
