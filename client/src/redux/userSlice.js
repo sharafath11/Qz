@@ -1,8 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
+
 const storedUser = localStorage.getItem('user');
 const storedToken = localStorage.getItem('token');
+
+const parseJson = (json) => {
+  try {
+    return JSON.parse(json);
+  } catch (e) {
+    return null;  
+  }
+};
+
 const initialState = {
-  user: storedUser ? JSON.parse(storedUser) : null,  
+  user: storedUser ? parseJson(storedUser) : null,  
   token: storedToken ? storedToken : null,         
   isAuthenticated: storedUser && storedToken ? true : false,  
 };
@@ -12,11 +22,8 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      console.log("dfgbgf",state.user);
-      console.log(JSON.stringify(state)); 
-
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.user = action.payload.user; 
+      state.token = action.payload.token; 
       state.isAuthenticated = true;
       localStorage.setItem('token', action.payload.token);
       localStorage.setItem('user', JSON.stringify(action.payload.user));
@@ -30,6 +37,7 @@ export const userSlice = createSlice({
     },
   },
 });
+
 
 export const { setUser, clearUser } = userSlice.actions;
 export default userSlice.reducer;

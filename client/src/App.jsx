@@ -6,9 +6,12 @@ import LoginPage from "./pages/LoginPage";
 import CategoriesPage from "./pages/CategoriesPage";
 import Leaderboard from "./pages/Leaderboard";
 import RandomQzPage from "./pages/RandomQzPage";
+import QzEnter from "./pages/QzEnter";
 
 
 function App() {
+  const token=localStorage.getItem("token")
+  console.log(token)
   return (
     <BrowserRouter>
       <Routes>
@@ -18,6 +21,7 @@ function App() {
         <Route path="/categories" element={<CategoriesPage/>}/>
         <Route path="/leaderboard" element={<Leaderboard/>}/>
         <Route path="/RandomQzPage" element={<RandomQzPage/>}/>
+        <Route path="/RandomQz-start" element={token?<QzEnter/>:<LoginPage/>}/>
       </Routes>
     </BrowserRouter>
   );
