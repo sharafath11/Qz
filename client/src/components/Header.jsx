@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Brain, Menu, User, X } from 'lucide-react'
 import { useSelector, useDispatch } from 'react-redux'
 import { clearUser } from '../redux/userSlice'
@@ -17,9 +17,10 @@ export default function Header() {
   
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user.user)
-
+ const navigate=useNavigate()
   const handleLogout = () => {
-    dispatch(clearUser())
+    dispatch(clearUser());
+    navigate("/")
   }
 
   return (

@@ -5,6 +5,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import CategoriesPage from "./pages/CategoriesPage";
 import Leaderboard from "./pages/Leaderboard";
+import RandomQzPage from "./pages/RandomQzPage";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/categories" element={<CategoriesPage/>}/>
         <Route path="/leaderboard" element={<Leaderboard/>}/>
+        <Route path="/RandomQzPage" element={<RandomQzPage/>}/>
       </Routes>
     </BrowserRouter>
   );

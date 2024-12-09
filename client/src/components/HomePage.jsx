@@ -2,6 +2,9 @@ import { Trophy, BookOpen, BarChart, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom'; // If you're using React Router for navigation
 
 export default function HomePage() {
+  const token = localStorage.getItem("token");
+
+ 
   return (
     <main className="min-h-screen bg-[#1f2937] flex items-center justify-center p-4">
       <div className="max-w-4xl w-full space-y-8">
@@ -14,11 +17,17 @@ export default function HomePage() {
             <p className="text-center text-lg text-gray-600 mt-2">Test your skills across various topics!</p>
           </div>
           <div className="flex justify-center p-6">
-            <Link to="/start-quiz">
+            {
+              token ?     <Link to="/RandomQzPage">
               <button className="bg-blue-600 hover:bg-blue-700 text-white text-xl py-6 px-12 rounded-lg">
                 Start Quiz
               </button>
+            </Link>:<Link to="/login" >
+            <button className="bg-blue-600 hover:bg-blue-700 text-white text-xl py-6 px-12 rounded-lg">
+                Start Quiz
+              </button>
             </Link>
+            }
           </div>
         </div>
 
