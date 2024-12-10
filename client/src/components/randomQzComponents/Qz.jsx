@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
 import { setUser } from '../../redux/userSlice';
 import QzModal from '../QzModal';
+import NoQuestionsPage from '../NoQuestionsPage';
 
 
 export default function Qz({params}) {
@@ -35,13 +36,12 @@ export default function Qz({params}) {
   const fetchQuestions = async () => {
     try {
       
-      const { data } = await axios.post(`${BaseUrl}/Qz/randomQz`, {
+      const response = await axios.post(`${BaseUrl}/Qz/randomQz`, {
         level: user.level, 
         cat:params
       });
-      
-      
-      setQuestions(data.questions);
+     
+      setQuestions(response.data.questions);
     } catch (error) {
       console.error('Error fetching questions:', error);
     }
@@ -101,7 +101,7 @@ export default function Qz({params}) {
       console.error("Error submitting quiz result:", error);
     }
   };
-  console.log(score)
+  
   const checkAnswers = () => {
     setIsModalOpen(true)
   };
@@ -109,7 +109,9 @@ export default function Qz({params}) {
   const closeModal = () => {
     setIsModalOpen(false); // Close the modal
   };
-
+  if(questions.length==0){
+    return <NoQuestionsPage/>
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-700 via-purple-800 to-indigo-900 flex flex-col items-center justify-center p-4">
       <motion.div
