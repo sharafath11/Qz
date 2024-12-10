@@ -3,19 +3,20 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Trophy, Brain, Zap, CheckCircle } from "lucide-react";
 import StatsCard from "./StatsCard";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function RandomQuizLevelHome() {
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector((state) => state.user.user);
+  const parsms=useParams();
+  
 
- console.log(user);
  
   useEffect(() => {
     setIsLoaded(true);
   }, []);
-
+  {console.log(parsms.cat)}
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-700 via-purple-800 to-indigo-900 flex items-center justify-center p-4">
       <motion.div
@@ -96,7 +97,9 @@ export default function RandomQuizLevelHome() {
           whileTap={{ scale: 0.95 }}
           className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition duration-200 ease-in-out"
         >
-          <Link to="/RandomQz-start">Start Next Quiz</Link>
+         <Link to={`/RandomQz-start/${parsms.cat}`}>Start Next Quiz</Link>
+
+            
           
         </motion.button>
       </motion.div>

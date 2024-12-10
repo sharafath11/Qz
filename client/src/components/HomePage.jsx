@@ -18,7 +18,7 @@ export default function HomePage() {
           </div>
           <div className="flex justify-center p-6">
             {
-              token ?     <Link to="/RandomQzPage">
+              token ?     <Link to="/RandomQzPage/:null">
               <button className="bg-blue-600 hover:bg-blue-700 text-white text-xl py-6 px-12 rounded-lg">
                 Start Quiz
               </button>

@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const CategorieCard = () => {
+  const navigate=useNavigate()
     const categories = [
-        { name: 'Sports', description: 'Test your knowledge about various sports.', href: '/quiz/sports' },
+        { name: 'Sports', description: 'Test your knowledge about various sports.', href: '/RandomQzPage/sports' },
         { name: 'General Knowledge', description: 'Answer general knowledge questions from various fields.', href: '/quiz/general-knowledge' },
         { name: 'Science', description: 'Explore questions about physics, chemistry, and biology.', href: '/quiz/science' },
         { name: 'History', description: 'Challenge your history knowledge from different eras.', href: '/quiz/history' },
@@ -22,7 +24,7 @@ const CategorieCard = () => {
           <div className="p-6">
             <h2 className="text-2xl font-semibold text-gray-900">{category.name}</h2>
             <p className="text-gray-600 mt-2">{category.description}</p>
-            <button className="mt-4 text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md">
+            <button className="mt-4 text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md"  >
               Start Quiz
             </button>
           </div>

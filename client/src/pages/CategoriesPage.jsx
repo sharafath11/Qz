@@ -1,4 +1,4 @@
-import CategorieCard from "../components/CategorieCard";
+import CategorieCard from "../components/categories/CategorieCard";
 import Header from "../components/Header";
 
 

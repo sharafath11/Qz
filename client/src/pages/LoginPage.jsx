@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../components/Header';
-import { BaseUrl } from '../apiConfig';
+import { BaseUrl } from '../utils/services';
 import { setUser } from '../redux/userSlice';
 import { useDispatch } from 'react-redux';
 const LoginPage = () => {

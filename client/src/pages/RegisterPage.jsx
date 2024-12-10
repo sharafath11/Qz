@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Correct import for react-router-dom v7
 import axios from 'axios';
 import Header from '../components/Header';
-import { BaseUrl } from '../apiConfig';
+import { BaseUrl } from '../utils/services';
 
 const RegisterPage = () => {
   console.log(BaseUrl)

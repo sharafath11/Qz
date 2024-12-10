@@ -20,8 +20,8 @@ function App() {
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/categories" element={<CategoriesPage/>}/>
         <Route path="/leaderboard" element={<Leaderboard/>}/>
-        <Route path="/RandomQzPage" element={<RandomQzPage/>}/>
-        <Route path="/RandomQz-start" element={token?<QzEnter/>:<LoginPage/>}/>
+        <Route path="/RandomQzPage/:cat" element={<RandomQzPage/>}/>
+        <Route path="/RandomQz-start/:cat" element={token?<QzEnter/>:<LoginPage/>}/>
       </Routes>
     </BrowserRouter>
   );
