@@ -1,15 +1,15 @@
 import { Trophy, BookOpen, BarChart, Clock } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom'; // If you're using React Router for navigation
 
 export default function HomePage() {
   const token = localStorage.getItem("token");
-
+ 
  
   return (
     <main className="min-h-screen bg-[#1f2937] flex items-center justify-center p-4">
       <div className="max-w-4xl w-full space-y-8">
-        <h1 className="text-5xl font-bold text-center text-white mb-8">QuizMaster</h1>
-        
+        <h1 className="text-5xl font-bold text-center text-white mb-8">QuizMaster</h1> 
         {/* Quiz Challenge Section */}
         <div className="bg-white shadow-xl rounded-lg">
           <div className="p-8">
